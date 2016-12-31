@@ -13,6 +13,11 @@ export class TodoService {
                     .catch(this.handleError);
     }
 
+    public addTodo(todotext:String) : Observable<Response> {
+        return this._http.post("http://localhost:8000/api/v1/todo", todotext)
+                    .catch(this.handleError);
+    }
+
     private handleError(error: Response) {
         console.log("ERROR: " + error);
         return Observable.throw(error);

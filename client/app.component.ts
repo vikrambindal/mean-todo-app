@@ -10,8 +10,11 @@ import { TodoService } from './services/todo.service';
 })
 export class AppComponent implements OnInit {
     pageTitle: string = 'My ToDo List';
+    todos = [];
 
-    constructor(private _todoService: TodoService) {}
+    constructor(private _todoService: TodoService) {
+        this.todos = [];
+    }
 
     ngOnInit() {
         this._todoService.getListOfTodos()
@@ -25,6 +28,14 @@ export class AppComponent implements OnInit {
 
     private addTodo(todotext) {
         console.log("TODO: " + todotext.value);
-        todotext.value = '';
+        
+        this._todoService.addTodo(todotext.value)
+                .subscribe((response: Response) => {
+                    console.log(response.status);
+                    this.todos.push(todotext.value);
+                    todotext.value = '';
+                }, 
+                error => console.log(error),
+                () => "TODO Posted sucessfully");
     }
 }

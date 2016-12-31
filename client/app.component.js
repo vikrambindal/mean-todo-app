@@ -28,6 +28,8 @@ System.register(['@angular/core', '@angular/http', './services/todo.service'], f
                 constructor(_todoService) {
                     this._todoService = _todoService;
                     this.pageTitle = 'My ToDo List';
+                    this.todos = [];
+                    this.todos = [];
                 }
                 ngOnInit() {
                     this._todoService.getListOfTodos()
@@ -38,7 +40,12 @@ System.register(['@angular/core', '@angular/http', './services/todo.service'], f
                 }
                 addTodo(todotext) {
                     console.log("TODO: " + todotext.value);
-                    todotext.value = '';
+                    this._todoService.addTodo(todotext.value)
+                        .subscribe((response) => {
+                        console.log(response.status);
+                        this.todos.push(todotext.value);
+                        todotext.value = '';
+                    }, error => console.log(error), () => "TODO Posted sucessfully");
                 }
             };
             AppComponent = __decorate([

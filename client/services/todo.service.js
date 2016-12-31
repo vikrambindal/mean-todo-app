@@ -33,6 +33,10 @@ System.register(['@angular/core', '@angular/http', 'rxjs/Rx'], function(exports_
                         .map((response) => response.json())
                         .catch(this.handleError);
                 }
+                addTodo(todotext) {
+                    return this._http.post("http://localhost:8000/api/v1/todo", todotext)
+                        .catch(this.handleError);
+                }
                 handleError(error) {
                     console.log("ERROR: " + error);
                     return Rx_1.Observable.throw(error);
