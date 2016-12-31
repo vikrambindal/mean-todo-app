@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TODO Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="/scripts/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="/client/app.component.css" rel="stylesheet" />
+
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="/scripts/core-js/client/shim.min.js"></script>
+    <script src="/scripts/zone.js/dist/zone.js"></script>
+    <script src="/scripts/reflect-metadata/Reflect.js"></script>
+    <script src="/scripts/systemjs/dist/system.src.js"></script>
+    
+    <!-- 2. Configure SystemJS -->
+    <script src="/client/systemjs.config.js"></script>
+    <script>
+        System.config({
+        packages: {        
+          client: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('/client/main.js')
+            .then(null, console.error.bind(console));
+    </script>
+</head>
+
+<body>
+    <todo-app>Loading App...</todo-app>
+</body>
+
+</html>

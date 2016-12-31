@@ -1,0 +1,8 @@
+{
+    "Local": {
+        "server": {
+            "url": "http://localhost:",
+            "port": 8000
+        }
+    }
+}
