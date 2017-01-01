@@ -4,11 +4,20 @@ var ejsRender = require('ejs');
 var path = require('path');
 var config = require('config');
 var app = express();
+var mongoUtil = require('./server/mongoConfig.js');
 
+todoCollection = '';
+mongoUtil.connect(function(db){
+    todoCollection = db.collection('todo');
+});
+
+//Configurations
 app.set('view engine', 'ejs');
 app.engine('html', ejsRender.renderFile);
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
+//Read configuration from config/default.json
 var portNumber = config.get("Local.server.port");
 
 //Serve static files

@@ -34,7 +34,7 @@ System.register(['@angular/core', '@angular/http', 'rxjs/Rx'], function(exports_
                         .catch(this.handleError);
                 }
                 addTodo(todotext) {
-                    return this._http.post("http://localhost:8000/api/v1/todo", todotext)
+                    return this._http.post("http://localhost:8000/api/v1/todo", { "todoitem": todotext })
                         .catch(this.handleError);
                 }
                 handleError(error) {

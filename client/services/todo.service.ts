@@ -14,7 +14,7 @@ export class TodoService {
     }
 
     public addTodo(todotext:String) : Observable<Response> {
-        return this._http.post("http://localhost:8000/api/v1/todo", todotext)
+        return this._http.post("http://localhost:8000/api/v1/todo", {"todoitem": todotext})
                     .catch(this.handleError);
     }
 
