@@ -10,7 +10,7 @@ System.register(['@angular/core', '@angular/platform-browser', '@angular/http', 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, platform_browser_1, http_1, app_component_1;
+    var core_1, platform_browser_1, http_1, app_component_1, http_2;
     var AppModule;
     return {
         setters:[
@@ -22,6 +22,7 @@ System.register(['@angular/core', '@angular/platform-browser', '@angular/http', 
             },
             function (http_1_1) {
                 http_1 = http_1_1;
+                http_2 = http_1_1;
             },
             function (app_component_1_1) {
                 app_component_1 = app_component_1_1;
@@ -39,7 +40,8 @@ System.register(['@angular/core', '@angular/platform-browser', '@angular/http', 
                     declarations: [
                         app_component_1.AppComponent
                     ],
-                    bootstrap: [app_component_1.AppComponent]
+                    bootstrap: [app_component_1.AppComponent],
+                    providers: [http_2.HTTP_PROVIDERS]
                 }), 
                 __metadata('design:paramtypes', [])
             ], AppModule);

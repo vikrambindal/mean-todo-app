@@ -1,4 +1,4 @@
-System.register(['@angular/core', '@angular/http', './services/todo.service'], function(exports_1, context_1) {
+System.register(['@angular/core', './services/todo.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,12 @@ System.register(['@angular/core', '@angular/http', './services/todo.service'], f
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, todo_service_1;
+    var core_1, todo_service_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-            },
-            function (http_1_1) {
-                http_1 = http_1_1;
             },
             function (todo_service_1_1) {
                 todo_service_1 = todo_service_1_1;
@@ -27,22 +24,17 @@ System.register(['@angular/core', '@angular/http', './services/todo.service'], f
             let AppComponent = class AppComponent {
                 constructor(_todoService) {
                     this._todoService = _todoService;
-                    this.pageTitle = 'My ToDo List';
-                    this.todos = [];
                     this.todos = [];
                 }
                 ngOnInit() {
                     this._todoService.getListOfTodos()
                         .subscribe((response) => {
-                        console.log(response);
-                        this.pageTitle = JSON.stringify(response);
-                    }, error => console.log(error), () => console.log("Finished obtaining list of todos"));
+                        this.todos = this.todos.concat(response);
+                    }, error => console.log(error));
                 }
                 addTodo(todotext) {
-                    console.log("TODO: " + todotext.value);
                     this._todoService.addTodo(todotext.value)
                         .subscribe((response) => {
-                        console.log(response.status);
                         this.todos.push(todotext.value);
                         todotext.value = '';
                     }, error => console.log(error), () => "TODO Posted sucessfully");
@@ -52,7 +44,7 @@ System.register(['@angular/core', '@angular/http', './services/todo.service'], f
                 core_1.Component({
                     selector: 'todo-app',
                     templateUrl: 'client/app.component.html',
-                    providers: [todo_service_1.TodoService, http_1.HTTP_PROVIDERS]
+                    providers: [todo_service_1.TodoService]
                 }), 
                 __metadata('design:paramtypes', [todo_service_1.TodoService])
             ], AppComponent);

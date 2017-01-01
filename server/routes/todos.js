@@ -4,7 +4,8 @@ var router = express.Router();
 
 router.get('/', (request, response) => {
     todoCollection.find().toArray((err, docs) => {
-        console.log('Obtained ' + docs.length + ' items');
+        var todoitems = docs.map((doc)=> doc.item);
+        response.send(todoitems).status(200);
     });
 });
 
