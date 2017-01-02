@@ -35,9 +35,16 @@ System.register(['@angular/core', './services/todo.service'], function(exports_1
                 addTodo(todotext) {
                     this._todoService.addTodo(todotext.value)
                         .subscribe((response) => {
-                        this.todos.push(todotext.value);
+                        this.todos.push(response);
                         todotext.value = '';
                     }, error => console.log(error), () => "TODO Posted sucessfully");
+                }
+                onDelete(todo) {
+                    this._todoService.deleteTodo(todo)
+                        .subscribe((response) => {
+                        this.todos = [];
+                        this.ngOnInit();
+                    }, error => console.log(error));
                 }
             };
             AppComponent = __decorate([

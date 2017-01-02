@@ -23,11 +23,20 @@ export class AppComponent implements OnInit {
 
     private addTodo(todotext) {
         this._todoService.addTodo(todotext.value)
-                .subscribe((response: Response) => {
-                    this.todos.push(todotext.value);
-                    todotext.value = '';
-                }, 
-                error => console.log(error),
-                () => "TODO Posted sucessfully");
+            .subscribe((response: Response) => {
+                this.todos.push(response);
+                todotext.value = '';
+            }, 
+            error => console.log(error),
+            () => "TODO Posted sucessfully");
+    }
+
+    private onDelete(todo) {
+        this._todoService.deleteTodo(todo)
+            .subscribe((response:Response) => {
+                this.todos = [];
+                this.ngOnInit();
+            },
+            error => console.log(error));
     }
 }

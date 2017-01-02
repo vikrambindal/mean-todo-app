@@ -35,6 +35,11 @@ System.register(['@angular/core', '@angular/http', 'rxjs/Rx'], function(exports_
                 }
                 addTodo(todotext) {
                     return this._http.post("http://localhost:8000/api/v1/todo", { "todoitem": todotext })
+                        .map((response) => response.json())
+                        .catch(this.handleError);
+                }
+                deleteTodo(todo) {
+                    return this._http.delete("http://localhost:8000/api/v1/todo/" + todo._id)
                         .catch(this.handleError);
                 }
                 handleError(error) {
